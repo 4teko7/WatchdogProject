@@ -10,6 +10,7 @@
 #include <unistd.h> 
 #include <sys/wait.h>
 #include <sys/types.h>
+struct timespec delta = {0 /*secs*/, 300000000 /*nanosecs*/}; //0.3 sec
 using namespace std;
 int main(int argc, char *argv[]) 
 { 
@@ -19,7 +20,6 @@ int main(int argc, char *argv[])
 
 	// FIFO file path 
 	char * myfifo = (char*) "/tmp/myfifo"; 
-    cout << "WILL CALL PROCESS " << endl;
 
     // Open FIFO for write only 
     fd = open(myfifo, O_WRONLY); 
@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
     stringstream processId;
     stringstream processId1;
     string processIdString;
+    stringstream pNumber;
 
     processId1 << "P" <<  0 << ' ' << (long)getpid();
     processIdString = processId1.str();
@@ -48,15 +49,16 @@ int main(int argc, char *argv[])
             return 1;
         }
         if(childpid == 0) {
+            pNumber << "P" << i;
             processId << "P" << i << ' ' << (long)getpid();
             processIdString = processId.str();
             cout << processIdString << endl;
-
             // Write the input arr2ing on FIFO 
 		    // write(fd, processIdString.c_str(), strlen(processIdString.c_str())); 
 		    write(fd, processIdString.c_str(), 30); 
-            return 0;
+            execl("./process","./process", pNumber.str().c_str(), NULL);
         } else {
+            nanosleep(&delta, &delta);  // Deal with writing delays
             continue;
             // cout << " I AM PARENT : " << (long)getpid()  << " : "  << childpid << endl;
         }
