@@ -31,26 +31,38 @@ int main(int argc, char *argv[])
 
     pid_t childpid;
     stringstream processId;
+    stringstream processId1;
     string processIdString;
-    for (int i=0; i<=numberOfProcess; i++) {
+
+    processId1 << "P" <<  0 << ' ' << (long)getpid();
+    processIdString = processId1.str();
+    cout << processIdString << endl;
+    // Write the input arr2ing on FIFO 
+    // write(fd, processIdString.c_str(), strlen(processIdString.c_str())); 
+    write(fd, processIdString.c_str(), 30); 
+
+    for (int i=1; i<=numberOfProcess; i++) {
         childpid = fork();
         if(childpid == -1){
             cout << "FAILED TO FORK" << endl;
             return 1;
         }
         if(childpid == 0) {
-            processId <<"P" << i + 1 << ' ' << (long)getpid()<<"\n";
+            processId << "P" << i << ' ' << (long)getpid();
             processIdString = processId.str();
             cout << processIdString << endl;
 
             // Write the input arr2ing on FIFO 
-		    write(fd, processIdString.c_str(), strlen(processIdString.c_str())); 
+		    // write(fd, processIdString.c_str(), strlen(processIdString.c_str())); 
+		    write(fd, processIdString.c_str(), 30); 
             return 0;
         } else {
-
-            cout << " I AM PARENT : " << (long)getpid()  << " : "  << childpid << endl;
+            continue;
+            // cout << " I AM PARENT : " << (long)getpid()  << " : "  << childpid << endl;
         }
     }
+
+    sleep(5000);
 
     // close(fd); 
 
