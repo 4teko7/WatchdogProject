@@ -1,0 +1,32 @@
+P1 is waiting for a signal
+P2 is waiting for a signal
+P3 is waiting for a signal
+P4 is waiting for a signal
+P5 is waiting for a signal
+P3 received signal 1
+P2 received signal 2
+P3 received signal 15, terminating gracefully
+P3 is waiting for a signal
+P4 received signal 4
+P2 received signal 8
+P1 received signal 15, terminating gracefully
+P2 received signal 15, terminating gracefully
+P3 received signal 15, terminating gracefully
+P4 received signal 15, terminating gracefully
+P5 received signal 15, terminating gracefully
+P1 is waiting for a signal
+P2 is waiting for a signal
+P3 is waiting for a signal
+P4 is waiting for a signal
+P5 is waiting for a signal
+P2 received signal 5
+P5 received signal 15, terminating gracefully
+P5 is waiting for a signal
+P5 received signal 4
+P3 received signal 24
+P1 received signal 11
+P1 received signal 15, terminating gracefully
+P2 received signal 15, terminating gracefully
+P3 received signal 15, terminating gracefully
+P4 received signal 15, terminating gracefully
+P5 received signal 15, terminating gracefully

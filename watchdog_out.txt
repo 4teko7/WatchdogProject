@@ -1,0 +1,19 @@
+P1 is started and it has a pid of 4296
+P2 is started and it has a pid of 4297
+P3 is started and it has a pid of 4298
+P4 is started and it has a pid of 4299
+P5 is started and it has a pid of 4300
+P3 is killed
+Restarting P3
+P3 is started and it has a pid of 4301
+P1 is killed, all processes must be killed
+Restarting all processes
+P1 is started and it has a pid of 4302
+P2 is started and it has a pid of 4303
+P3 is started and it has a pid of 4304
+P4 is started and it has a pid of 4305
+P5 is started and it has a pid of 4306
+P5 is killed
+Restarting P5
+P5 is started and it has a pid of 4307
+Watchdog is terminating gracefully
