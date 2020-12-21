@@ -42,7 +42,12 @@ int main(int argc, char *argv[])
 void mySignal(int sigNumber) 
 
 { 
-    signal(SIGHUP, mySignal); /* reset signal */
-    cout << PNumber << " received signal " << sigNumber << endl;
+    if(sigNumber == 15) {
+        cout << PNumber << " is received signal " << sigNumber << ",terminating gracefully" << endl;
+        exit(0);
+    } else {
+        signal(SIGHUP, mySignal); /* reset signal */
+        cout << PNumber << " received signal " << sigNumber << endl;
+    }
 
 } 
