@@ -78,25 +78,48 @@ int main(int argc, char *argv[])
 
     // sleep(5000);
 
-    long counter = 0;
-    while(true){
-        if(counter >= numberOfProcess){
-            counter = 0;
-        }
-        int status;
-        // cout << "PIDS " << counter << " : " <<  pids[counter] << endl;
-        pid_t result = waitpid(pids[counter], &status, WNOHANG);
-        if (result == 0) {
-            // Child still alive
-            // cout << "CHILD IS ALIVE" << endl;
-        } else if (result == -1) {
-            // Error 
-            // cout << "Error " << endl;
-        } else {
-            // Child exited
-            cout << "Child WITH PID " << pidsMap[pids[counter]] << " " << pids[counter] << "WAS TERMINATED" << endl;
-            string pNumber = pidsMap.at(pids[counter]);
+  
 
+    while(true){
+        pid_t pidOfChild = wait(NULL);
+        // Child exited
+        // cout << "Child WITH PID " << pidsMap[pidOfChild] << " " << pidOfChild << "WAS TERMINATED" << endl;
+        string pNumber = pidsMap.at(pidOfChild);
+
+        map<long,string>::iterator pidsIterator; 
+        if(pNumber == "P1"){
+            pidsIterator = pidsMap.begin();
+            for(pidsIterator++; pidsIterator != pidsMap.end(); pidsIterator++){
+                kill(pidsIterator->first , 15);
+                wait(NULL);
+            }
+            pidsMap.clear();
+            for (int i=1; i<=numberOfProcess; i++) {
+                childpid = fork();
+                if(childpid == -1){
+                    cout << "FAILED TO FORK" << endl;
+                    return 1;
+                }
+                if(childpid == 0) {
+                    string pNumber ="P";
+                    pNumber += to_string(i);
+                    processId << "P" << i << ' ' << (long)getpid();
+                    processIdString = processId.str();
+                    // cout << processIdString << endl; 
+                    write(fd, processIdString.c_str(), 30); 
+                    execl("./process","./process", pNumber.c_str(), NULL);
+                } else {
+                    string pNum ="P";
+                    pNum += to_string(i);
+                    pidsMap[childpid] =  pNum;
+                    // cout << "pNum : " << pNum << " childpid : " << childpid << endl;
+                    nanosleep(&delta, &delta);  // Deal with writing delays
+                    continue;
+                    // cout << " I AM PARENT : " << (long)getpid()  << " : "  << childpid << endl;
+                }
+            }
+
+        } else {
             childpid = fork();
             if(childpid == -1){
                 // cout << "FAILED TO FORK" << endl;
@@ -106,19 +129,25 @@ int main(int argc, char *argv[])
                 pid = (long)getpid();
                 processId << pNumber << ' ' << (long)getpid();
                 processIdString = processId.str();
-                cout << processIdString << endl;
+                // cout << processIdString << endl;
                 // Write the input arr2ing on FIFO 
                 // write(fd, processIdString.c_str(), strlen(processIdString.c_str())); 
                 write(fd, processIdString.c_str(), 30); 
-                cout << "CHILD WITH PID : " << pNumber << " " << pid << " WAS CREATED" << endl;
+                // cout << "CHILD WITH PID : " << pNumber << " " << pid << " WAS CREATED" << endl;
                 execl("./process","./process", pNumber.c_str(), NULL);
+            }
+            pidsMap.erase(pidOfChild);
+            pidsMap[childpid] = pNumber;
         }
 
-        pids[counter] = childpid;
-        pidsMap[childpid] = pNumber;
+
     }
-    counter++;
-    }
+
+
+
+
+
+
 
     // close(fd); 
 
