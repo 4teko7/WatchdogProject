@@ -146,7 +146,7 @@ void killAllChildren(bool shouldPOneBeKilled){
 
 //Kill watchdog and all Its children
 void killWatchdog(int sigNumber) {
-    killAllChildren(true);
+    // killAllChildren(true);
     watchdogOutputStream << "Watchdog is terminating gracefully\n";
     watchdogOutputStream.flush();
     watchdogOutputStream.close();

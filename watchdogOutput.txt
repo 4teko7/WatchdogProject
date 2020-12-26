@@ -1,12 +1,12 @@
-P1 is started and it has a pid of 21428
-P2 is started and it has a pid of 21429
-P3 is started and it has a pid of 21430
+P1 is started and it has a pid of 22890
+P2 is started and it has a pid of 22891
+P3 is started and it has a pid of 22892
 P1 is killed, all processes must be killed
 Restarting all processes
-P1 is started and it has a pid of 21459
-P2 is started and it has a pid of 21460
-P3 is started and it has a pid of 21464
+P1 is started and it has a pid of 22925
+P2 is started and it has a pid of 22926
+P3 is started and it has a pid of 22927
 P3 is killed
 Restarting P3
-P3 is started and it has a pid of 21483
+P3 is started and it has a pid of 22942
 Watchdog is terminating gracefully
