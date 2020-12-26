@@ -1,19 +1,12 @@
-P1 is started and it has a pid of 20131
-P2 is started and it has a pid of 20134
-P3 is started and it has a pid of 20135
-P4 is started and it has a pid of 20136
-P5 is started and it has a pid of 20137
-P3 is killed
-Restarting P3
-P3 is started and it has a pid of 20178
+P1 is started and it has a pid of 21428
+P2 is started and it has a pid of 21429
+P3 is started and it has a pid of 21430
 P1 is killed, all processes must be killed
 Restarting all processes
-P1 is started and it has a pid of 20211
-P2 is started and it has a pid of 20212
-P3 is started and it has a pid of 20213
-P4 is started and it has a pid of 20214
-P5 is started and it has a pid of 20215
-P5 is killed
-Restarting P5
-P5 is started and it has a pid of 20247
+P1 is started and it has a pid of 21459
+P2 is started and it has a pid of 21460
+P3 is started and it has a pid of 21464
+P3 is killed
+Restarting P3
+P3 is started and it has a pid of 21483
 Watchdog is terminating gracefully

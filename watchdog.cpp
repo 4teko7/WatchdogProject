@@ -139,6 +139,7 @@ void killAllChildren(bool shouldPOneBeKilled){
     if(!shouldPOneBeKilled) pidsIterator++;
     for(; pidsIterator != pidsMap.end(); pidsIterator++){
         int killValue = kill(pidsIterator->first , 15);
+        nanosleep(&delta, &delta);  // Deal with writing delays
         wait(NULL);
         // cout<<"ATER WAIT : " << killValue <<endl;
     }
