@@ -10,19 +10,25 @@
 #include <unistd.h> 
 #include <sys/types.h>
 #include <sys/wait.h>
-
+#include <fstream>
 // function declaration 
 void mySignal(int sigNumber); 
 
+char * processOutput;
 char * PNumber;
 using namespace std;
+fstream processOutputStream;
 int main(int argc, char *argv[]) 
 { 
 
-    PNumber = argv[1] ;
+    processOutput = argv[1] ;
+    PNumber = argv[2] ;
 
-    cout << PNumber << " is waiting for a signal" << endl;
+    processOutputStream.open(processOutput, ios::app);
 
+
+    processOutputStream << PNumber << " is waiting for a signal\n";
+    processOutputStream.flush();
 
     signal(SIGHUP, mySignal); 
     signal(SIGINT, mySignal); 
@@ -43,11 +49,14 @@ void mySignal(int sigNumber)
 
 { 
     if(sigNumber == 15) {
-        cout << PNumber << " is received signal " << sigNumber << ",terminating gracefully" << endl;
+        processOutputStream << PNumber << " is received signal " << sigNumber << ",terminating gracefully\n";
+        processOutputStream.flush();
+        processOutputStream.close();
         exit(0);
     } else {
         signal(SIGHUP, mySignal); /* reset signal */
-        cout << PNumber << " received signal " << sigNumber << endl;
+        processOutputStream << PNumber << " received signal " << sigNumber << "\n";
+        processOutputStream.flush();
     }
 
 } 

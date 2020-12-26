@@ -11,14 +11,15 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <map>
+#include <fstream>
 struct timespec delta = {0 /*secs*/, 300000000 /*nanosecs*/}; //0.3 sec
-void createAllChilds(int numberOfProcess);
-void createOneChild(pid_t pidOfChild, int numberOfProcess);
+void createAllChilds(int numberOfProcess, char * processOutput,bool isResultOfKill);
+void createOneChild(pid_t pidOfChild, int numberOfProcess, char * processOutput);
 void killAllChildren(bool shouldPOneBeKilled);
 void killWatchdog(int sigNumber);
 int fd;
-
 using namespace std;
+fstream watchdogOutputStream;
 map<long,string> pidsMap;
 int main(int argc, char *argv[]) 
 { 
@@ -37,7 +38,7 @@ int main(int argc, char *argv[])
     char * processOutput = argv[2] ;
     char * watchdogOutput = argv[3] ;
 
-    
+    watchdogOutputStream.open(watchdogOutput, ios::app);
     
     long pid;
     string processIdString;
@@ -50,7 +51,7 @@ int main(int argc, char *argv[])
     processIdString = processId1.str();
     write(fd, processIdString.c_str(), 30); 
   
-    createAllChilds(numberOfProcess); //Create All Children
+    createAllChilds(numberOfProcess,processOutput,false); //Create All Children
 
     signal(SIGTERM, killWatchdog); 
 
@@ -61,9 +62,9 @@ int main(int argc, char *argv[])
         
         if(pNumber == "P1"){
             killAllChildren(false);
-            createAllChilds(numberOfProcess); //Create All Children
+            createAllChilds(numberOfProcess,processOutput,true); //Create All Children
         } else {
-            createOneChild(pidOfChild, numberOfProcess);
+            createOneChild(pidOfChild, numberOfProcess,processOutput);
         }
     }
 
@@ -72,37 +73,48 @@ int main(int argc, char *argv[])
 
 
 
-void createOneChild(pid_t pidOfChild, int numberOfProcess){
+void createOneChild(pid_t pidOfChild, int numberOfProcess, char * processOutput){
     stringstream processId;
     string processIdString;
     pid_t childpid;
 
     string pNumber = pidsMap.at(pidOfChild);
+    watchdogOutputStream << pNumber << " is killed\n";
+    watchdogOutputStream.flush();
     childpid = fork();
     if(childpid == -1){
-        cout << "FAILED TO FORK" << endl;
+        watchdogOutputStream << "FAILED TO FORK\n";
+        watchdogOutputStream.flush();
         return;
     }
     if(childpid == 0) {
         processId << pNumber << ' ' << (long)getpid();
         processIdString = processId.str();
         write(fd, processIdString.c_str(), 30); 
-        execl("./process","./process", pNumber.c_str(), NULL);
+        execl("./process","./process", processOutput, pNumber.c_str(), NULL);
     }
     pidsMap.erase(pidOfChild);
     pidsMap[childpid] = pNumber;
+    watchdogOutputStream << "Restarting " << pNumber << "\n";
+    watchdogOutputStream << pNumber << " is started and it has a pid of " << childpid << "\n";
+    watchdogOutputStream.flush();
 }
 
-void createAllChilds(int numberOfProcess){
+void createAllChilds(int numberOfProcess, char * processOutput,bool isResultOfKill){
     stringstream processId;
     string processIdString;
     pid_t childpid;
-
+    if(isResultOfKill){
+        watchdogOutputStream << "P1 is killed, all processes must be killed\n";
+        watchdogOutputStream << "Restarting all processes\n";
+        watchdogOutputStream.flush();
+    }
     for (int i=1; i<=numberOfProcess; i++) {
         string pNumber ="P";
         childpid = fork();
         if(childpid == -1){
-            cout << "FAILED TO FORK" << endl;
+            watchdogOutputStream << "FAILED TO FORK\n";
+            watchdogOutputStream.flush();
             return;
         }
         if(childpid == 0) {
@@ -110,10 +122,12 @@ void createAllChilds(int numberOfProcess){
             processId << pNumber << ' ' << (long)getpid();
             processIdString = processId.str();
             write(fd, processIdString.c_str(), 30); 
-            execl("./process","./process", pNumber.c_str(), NULL);
+            execl("./process","./process", processOutput, pNumber.c_str(), NULL);
         } else {
             pNumber += to_string(i);
             pidsMap[childpid] =  pNumber;
+            watchdogOutputStream << pNumber << " is started and it has a pid of " << childpid << "\n";
+            watchdogOutputStream.flush();
             nanosleep(&delta, &delta);  // Deal with writing delays
             continue;
         }
@@ -133,6 +147,8 @@ void killAllChildren(bool shouldPOneBeKilled){
 
 void killWatchdog(int sigNumber) {
     killAllChildren(true);
-    cout << "Watchdog is terminating gracefully" << endl;
+    watchdogOutputStream << "Watchdog is terminating gracefully\n";
+    watchdogOutputStream.flush();
+    watchdogOutputStream.close();
     exit(0);
 }
