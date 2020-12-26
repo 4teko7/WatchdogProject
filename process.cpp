@@ -14,13 +14,13 @@
 // function declaration 
 void mySignal(int sigNumber); 
 
-char * processOutput;
-char * PNumber;
+char * processOutput; //Process Output path
+char * PNumber; //P#
 using namespace std;
-fstream processOutputStream;
-int main(int argc, char *argv[]) 
-{ 
+fstream processOutputStream; //Process output stream
+int main(int argc, char *argv[]) { 
 
+    //Arguments taken from watchdog
     processOutput = argv[1] ;
     PNumber = argv[2] ;
 
@@ -30,6 +30,7 @@ int main(int argc, char *argv[])
     processOutputStream << PNumber << " is waiting for a signal\n";
     processOutputStream.flush();
 
+    //SIGNALS
     signal(SIGHUP, mySignal); 
     signal(SIGINT, mySignal); 
     signal(SIGQUIT, mySignal); 
@@ -42,19 +43,19 @@ int main(int argc, char *argv[])
     signal(SIGTERM, mySignal); 
     signal(SIGXCPU, mySignal); 
     for (;;) {}
+
+    return 0;
 } 
 
 // sighup() function definition 
-void mySignal(int sigNumber) 
-
-{ 
+void mySignal(int sigNumber) { 
     if(sigNumber == 15) {
         processOutputStream << PNumber << " is received signal " << sigNumber << ",terminating gracefully\n";
         processOutputStream.flush();
         processOutputStream.close();
         exit(0);
     } else {
-        signal(SIGHUP, mySignal); /* reset signal */
+        signal(sigNumber, mySignal);
         processOutputStream << PNumber << " received signal " << sigNumber << "\n";
         processOutputStream.flush();
     }

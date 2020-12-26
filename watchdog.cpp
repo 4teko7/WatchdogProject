@@ -13,20 +13,16 @@
 #include <map>
 #include <fstream>
 struct timespec delta = {0 /*secs*/, 300000000 /*nanosecs*/}; //0.3 sec
-void createAllChilds(int numberOfProcess, char * processOutput,bool isResultOfKill);
-void createOneChild(pid_t pidOfChild, int numberOfProcess, char * processOutput);
-void killAllChildren(bool shouldPOneBeKilled);
-void killWatchdog(int sigNumber);
-int fd;
+void createAllChilds(int numberOfProcess, char * processOutput,bool isResultOfKill);// Create all children
+void createOneChild(pid_t pidOfChild, int numberOfProcess, char * processOutput); // Create a child
+void killAllChildren(bool shouldPOneBeKilled); //Kill all children
+void killWatchdog(int sigNumber); //Kill watchdog
+int fd; //for pipe
 using namespace std;
-fstream watchdogOutputStream;
-map<long,string> pidsMap;
-int main(int argc, char *argv[]) 
-{ 
+fstream watchdogOutputStream; // Output file stream
+map<long,string> pidsMap; //Map for Pids and P# for processes
+int main(int argc, char *argv[]) { 
 	 
-
-    
-
 	// FIFO file path 
 	char * myfifo = (char*) "/tmp/myfifo"; 
 
@@ -34,9 +30,9 @@ int main(int argc, char *argv[])
     // Open FIFO for write only 
     fd = open(myfifo, O_WRONLY); 
 
-    int numberOfProcess = stoi(argv[1]) ;
-    char * processOutput = argv[2] ;
-    char * watchdogOutput = argv[3] ;
+    int numberOfProcess = stoi(argv[1]) ; //number of processes
+    char * processOutput = argv[2] ; //process output path
+    char * watchdogOutput = argv[3] ; // watchdog output path
 
     watchdogOutputStream.open(watchdogOutput, ios::app);
     
@@ -49,22 +45,22 @@ int main(int argc, char *argv[])
     processId1 << "P" <<  0 << ' ' << (long)getpid();
     parentPid = (long)getpid();
     processIdString = processId1.str();
-    write(fd, processIdString.c_str(), 30); 
+    write(fd, processIdString.c_str(), 30);  // Writing 'P0 Parent_Pid'
   
     createAllChilds(numberOfProcess,processOutput,false); //Create All Children
 
-    signal(SIGTERM, killWatchdog); 
+    signal(SIGTERM, killWatchdog); //Signal for terminating watchdog
 
-    while(true){
+    while(true){ //Loop until watchdog die
         pid_t pidOfChild = wait(NULL);
         string pNumber = pidsMap.at(pidOfChild);
 
         
-        if(pNumber == "P1"){
-            killAllChildren(false);
-            createAllChilds(numberOfProcess,processOutput,true); //Create All Children
+        if(pNumber == "P1"){ // If killed child is P1, then kill all children and create them again.
+            killAllChildren(false); //Kill all children
+            createAllChilds(numberOfProcess,processOutput,true); //Create all children
         } else {
-            createOneChild(pidOfChild, numberOfProcess,processOutput);
+            createOneChild(pidOfChild, numberOfProcess,processOutput); //create killed child again
         }
     }
 
@@ -72,7 +68,7 @@ int main(int argc, char *argv[])
 } 
 
 
-
+//Create a child
 void createOneChild(pid_t pidOfChild, int numberOfProcess, char * processOutput){
     stringstream processId;
     string processIdString;
@@ -100,6 +96,7 @@ void createOneChild(pid_t pidOfChild, int numberOfProcess, char * processOutput)
     watchdogOutputStream.flush();
 }
 
+//create all children
 void createAllChilds(int numberOfProcess, char * processOutput,bool isResultOfKill){
     stringstream processId;
     string processIdString;
@@ -134,6 +131,7 @@ void createAllChilds(int numberOfProcess, char * processOutput,bool isResultOfKi
     }
 }
 
+//Kill all children
 void killAllChildren(bool shouldPOneBeKilled){
     map<long,string>::iterator pidsIterator = pidsMap.begin();
     if(!shouldPOneBeKilled) pidsIterator++;
@@ -146,6 +144,7 @@ void killAllChildren(bool shouldPOneBeKilled){
     pidsMap.clear();
 }
 
+//Kill watchdog and all Its children
 void killWatchdog(int sigNumber) {
     killAllChildren(true);
     watchdogOutputStream << "Watchdog is terminating gracefully\n";
