@@ -12,10 +12,17 @@
 #include <sys/types.h>
 #include <map>
 struct timespec delta = {0 /*secs*/, 300000000 /*nanosecs*/}; //0.3 sec
+void createAllChilds(int numberOfProcess);
+void createOneChild(pid_t pidOfChild, int numberOfProcess);
+void killAllChildren(bool shouldPOneBeKilled);
+void killWatchdog(int sigNumber);
+int fd;
+
 using namespace std;
+map<long,string> pidsMap;
 int main(int argc, char *argv[]) 
 { 
-	int fd; 
+	 
 
     
 
@@ -30,158 +37,102 @@ int main(int argc, char *argv[])
     char * processOutput = argv[2] ;
     char * watchdogOutput = argv[3] ;
 
-    pid_t parentPid;
-    pid_t childpid;
-    stringstream processId;
-    stringstream processId1;
-    string processIdString;
-    long pids[numberOfProcess];
-    map<long,string> pidsMap;
+    
+    
     long pid;
+    string processIdString;
+    stringstream processId1;
+    pid_t parentPid;
+
 
     processId1 << "P" <<  0 << ' ' << (long)getpid();
     parentPid = (long)getpid();
     processIdString = processId1.str();
-    cout << processIdString << endl;
-    // Write the input arr2ing on FIFO 
-    // write(fd, processIdString.c_str(), strlen(processIdString.c_str())); 
     write(fd, processIdString.c_str(), 30); 
-    pids[0] = parentPid;
-    for (int i=1; i<=numberOfProcess; i++) {
-        childpid = fork();
-        if(childpid == -1){
-            cout << "FAILED TO FORK" << endl;
-            return 1;
-        }
-        if(childpid == 0) {
-            pids[i] = (long)getpid();
-            string pNumber ="P";
-            pNumber += to_string(i);
-            processId << "P" << i << ' ' << (long)getpid();
-            processIdString = processId.str();
-            cout << processIdString << endl;
-            // Write the input arr2ing on FIFO 
-		    // write(fd, processIdString.c_str(), strlen(processIdString.c_str())); 
-		    write(fd, processIdString.c_str(), 30); 
-            execl("./process","./process", pNumber.c_str(), NULL);
-        } else {
-            pids[i] = childpid;
-            string pNum ="P";
-            pNum += to_string(i);
-            pidsMap[childpid] =  pNum;
-            cout << "pNum : " << pNum << " childpid : " << childpid << endl;
-            nanosleep(&delta, &delta);  // Deal with writing delays
-            continue;
-            // cout << " I AM PARENT : " << (long)getpid()  << " : "  << childpid << endl;
-        }
-    }
-
-    // sleep(5000);
-
   
+    createAllChilds(numberOfProcess); //Create All Children
+
+    signal(SIGTERM, killWatchdog); 
 
     while(true){
         pid_t pidOfChild = wait(NULL);
-        // Child exited
-        // cout << "Child WITH PID " << pidsMap[pidOfChild] << " " << pidOfChild << "WAS TERMINATED" << endl;
         string pNumber = pidsMap.at(pidOfChild);
 
-        map<long,string>::iterator pidsIterator; 
+        
         if(pNumber == "P1"){
-            pidsIterator = pidsMap.begin();
-            for(pidsIterator++; pidsIterator != pidsMap.end(); pidsIterator++){
-                kill(pidsIterator->first , 15);
-                wait(NULL);
-            }
-            pidsMap.clear();
-            for (int i=1; i<=numberOfProcess; i++) {
-                childpid = fork();
-                if(childpid == -1){
-                    cout << "FAILED TO FORK" << endl;
-                    return 1;
-                }
-                if(childpid == 0) {
-                    string pNumber ="P";
-                    pNumber += to_string(i);
-                    processId << "P" << i << ' ' << (long)getpid();
-                    processIdString = processId.str();
-                    // cout << processIdString << endl; 
-                    write(fd, processIdString.c_str(), 30); 
-                    execl("./process","./process", pNumber.c_str(), NULL);
-                } else {
-                    string pNum ="P";
-                    pNum += to_string(i);
-                    pidsMap[childpid] =  pNum;
-                    // cout << "pNum : " << pNum << " childpid : " << childpid << endl;
-                    nanosleep(&delta, &delta);  // Deal with writing delays
-                    continue;
-                    // cout << " I AM PARENT : " << (long)getpid()  << " : "  << childpid << endl;
-                }
-            }
-
+            killAllChildren(false);
+            createAllChilds(numberOfProcess); //Create All Children
         } else {
-            childpid = fork();
-            if(childpid == -1){
-                // cout << "FAILED TO FORK" << endl;
-                return 1;
-            }
-            if(childpid == 0) {
-                pid = (long)getpid();
-                processId << pNumber << ' ' << (long)getpid();
-                processIdString = processId.str();
-                // cout << processIdString << endl;
-                // Write the input arr2ing on FIFO 
-                // write(fd, processIdString.c_str(), strlen(processIdString.c_str())); 
-                write(fd, processIdString.c_str(), 30); 
-                // cout << "CHILD WITH PID : " << pNumber << " " << pid << " WAS CREATED" << endl;
-                execl("./process","./process", pNumber.c_str(), NULL);
-            }
-            pidsMap.erase(pidOfChild);
-            pidsMap[childpid] = pNumber;
+            createOneChild(pidOfChild, numberOfProcess);
         }
-
-
     }
 
-
-
-
-
-
-
-    // close(fd); 
-
-
-    // char str1[80], str2[80]; 
-    // for (int i=0; i<=numberOfProcess; i++) {
-    //     cout << "in for loop : " << i << endl;
-    //     // First open in read only and read 
-    //     fd = open(myfifo,O_RDONLY); 
-    //     read(fd, str1, 80); 
-
-    //     // Print the read string and close 
-    //     printf("User1: %s\n", str1); 
-    // } 
-    //     close(fd); 
-    
-
-	// // Creating the named file(FIFO) 
-	// // mkfifo(<pathname>, <permission>) 
-	// mkfifo(myfifo, 0666); 
-
-	// while (1) 
-	// { 
-	// 	// Open FIFO for write only 
-	// 	fd = open(myfifo, O_WRONLY); 
-
-	// 	// Take an input arr2ing from user. 
-	// 	// 80 is maximum length 
-	// 	fgets(arr2, 80, stdin); 
-
-	// 	// Write the input arr2ing on FIFO 
-	// 	// and close it 
-	// 	write(fd, arr2, strlen(arr2)+1); 
-	// 	close(fd); 
-	// } 
 	return 0; 
 } 
+
+
+
+void createOneChild(pid_t pidOfChild, int numberOfProcess){
+    stringstream processId;
+    string processIdString;
+    pid_t childpid;
+
+    string pNumber = pidsMap.at(pidOfChild);
+    childpid = fork();
+    if(childpid == -1){
+        cout << "FAILED TO FORK" << endl;
+        return;
+    }
+    if(childpid == 0) {
+        processId << pNumber << ' ' << (long)getpid();
+        processIdString = processId.str();
+        write(fd, processIdString.c_str(), 30); 
+        execl("./process","./process", pNumber.c_str(), NULL);
+    }
+    pidsMap.erase(pidOfChild);
+    pidsMap[childpid] = pNumber;
+}
+
+void createAllChilds(int numberOfProcess){
+    stringstream processId;
+    string processIdString;
+    pid_t childpid;
+
+    for (int i=1; i<=numberOfProcess; i++) {
+        string pNumber ="P";
+        childpid = fork();
+        if(childpid == -1){
+            cout << "FAILED TO FORK" << endl;
+            return;
+        }
+        if(childpid == 0) {
+            pNumber += to_string(i);
+            processId << pNumber << ' ' << (long)getpid();
+            processIdString = processId.str();
+            write(fd, processIdString.c_str(), 30); 
+            execl("./process","./process", pNumber.c_str(), NULL);
+        } else {
+            pNumber += to_string(i);
+            pidsMap[childpid] =  pNumber;
+            nanosleep(&delta, &delta);  // Deal with writing delays
+            continue;
+        }
+    }
+}
+
+void killAllChildren(bool shouldPOneBeKilled){
+    map<long,string>::iterator pidsIterator = pidsMap.begin();
+    if(!shouldPOneBeKilled) pidsIterator++;
+    for(; pidsIterator != pidsMap.end(); pidsIterator++){
+        int killValue = kill(pidsIterator->first , 15);
+        wait(NULL);
+        // cout<<"ATER WAIT : " << killValue <<endl;
+    }
+    pidsMap.clear();
+}
+
+void killWatchdog(int sigNumber) {
+    killAllChildren(true);
+    cout << "Watchdog is terminating gracefully" << endl;
+    exit(0);
+}
