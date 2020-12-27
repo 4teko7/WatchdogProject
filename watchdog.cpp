@@ -12,7 +12,8 @@
 #include <sys/types.h>
 #include <map>
 #include <fstream>
-struct timespec delta = {0 /*secs*/, 300000000 /*nanosecs*/}; //0.3 sec
+unsigned int timeToSleep = 1; // Second
+struct timespec delta = {0 /*secs*/, 1000000000 /*nanosecs*/}; //0.3 sec
 void createAllChilds(int numberOfProcess, char * processOutput,bool isResultOfKill);// Create all children
 void createOneChild(pid_t pidOfChild, int numberOfProcess, char * processOutput); // Create a child
 void killAllChildren(bool shouldPOneBeKilled); //Kill all children
@@ -21,6 +22,7 @@ int fd; //for pipe
 using namespace std;
 fstream watchdogOutputStream; // Output file stream
 map<long,string> pidsMap; //Map for Pids and P# for processes
+map<long,long> indexPids; //Map for Pids and P# for processes
 int main(int argc, char *argv[]) { 
 	 
 	// FIFO file path 
@@ -89,8 +91,10 @@ void createOneChild(pid_t pidOfChild, int numberOfProcess, char * processOutput)
         write(fd, processIdString.c_str(), 30); 
         execl("./process","./process", processOutput, pNumber.c_str(), NULL);
     }
+    sleep(timeToSleep);  // Deal with writing delays
     pidsMap.erase(pidOfChild);
     pidsMap[childpid] = pNumber;
+    indexPids[stoi(pNumber.substr(1))]=childpid;
     watchdogOutputStream << "Restarting " << pNumber << "\n";
     watchdogOutputStream << pNumber << " is started and it has a pid of " << childpid << "\n";
     watchdogOutputStream.flush();
@@ -121,11 +125,12 @@ void createAllChilds(int numberOfProcess, char * processOutput,bool isResultOfKi
             write(fd, processIdString.c_str(), 30); 
             execl("./process","./process", processOutput, pNumber.c_str(), NULL);
         } else {
+            sleep(timeToSleep);  // Deal with writing delays
             pNumber += to_string(i);
             pidsMap[childpid] =  pNumber;
+            indexPids[stoi(pNumber.substr(1))]=childpid;
             watchdogOutputStream << pNumber << " is started and it has a pid of " << childpid << "\n";
             watchdogOutputStream.flush();
-            nanosleep(&delta, &delta);  // Deal with writing delays
             continue;
         }
     }
@@ -133,11 +138,11 @@ void createAllChilds(int numberOfProcess, char * processOutput,bool isResultOfKi
 
 //Kill all children
 void killAllChildren(bool shouldPOneBeKilled){
-    map<long,string>::iterator pidsIterator = pidsMap.begin();
+    map<long,long>::iterator pidsIterator = indexPids.begin();
     if(!shouldPOneBeKilled) pidsIterator++;
-    for(; pidsIterator != pidsMap.end(); pidsIterator++){
-        int killValue = kill(pidsIterator->first , 15);
-        nanosleep(&delta, &delta);  // Deal with writing delays
+    for(; pidsIterator != indexPids.end(); pidsIterator++){
+        int killValue = kill(pidsIterator->second , 15);
+        sleep(timeToSleep);  // Deal with writing delays
         wait(NULL);
         // cout<<"ATER WAIT : " << killValue <<endl;
     }

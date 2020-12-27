@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
 // sighup() function definition 
 void mySignal(int sigNumber) { 
     if(sigNumber == 15) {
-        processOutputStream << PNumber << " is received signal " << sigNumber << ",terminating gracefully\n";
+        processOutputStream << PNumber << " received signal " << sigNumber << ", terminating gracefully\n";
         processOutputStream.flush();
         processOutputStream.close();
         exit(0);
