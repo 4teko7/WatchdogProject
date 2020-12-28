@@ -141,17 +141,16 @@ void killAllChildren(bool shouldPOneBeKilled){
     map<long,long>::iterator pidsIterator = indexPids.begin();
     if(!shouldPOneBeKilled) pidsIterator++;
     for(; pidsIterator != indexPids.end(); pidsIterator++){
-        int killValue = kill(pidsIterator->second , 15);
+        kill(pidsIterator->second , 15);
         sleep(timeToSleep);  // Deal with writing delays
         wait(NULL);
-        // cout<<"ATER WAIT : " << killValue <<endl;
     }
     pidsMap.clear();
 }
 
 //Kill watchdog and all Its children
 void killWatchdog(int sigNumber) {
-    killAllChildren(true);
+    // killAllChildren(true);
     watchdogOutputStream << "Watchdog is terminating gracefully\n";
     watchdogOutputStream.flush();
     watchdogOutputStream.close();

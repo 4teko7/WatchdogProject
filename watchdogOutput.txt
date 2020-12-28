@@ -1,242 +1,65 @@
-P1 is started and it has a pid of 80939
-P2 is started and it has a pid of 80940
-P3 is started and it has a pid of 80941
-P4 is started and it has a pid of 80952
-P5 is started and it has a pid of 80954
-P6 is started and it has a pid of 80957
-P7 is started and it has a pid of 80960
-P8 is started and it has a pid of 80963
-P9 is started and it has a pid of 80966
-P10 is started and it has a pid of 80969
-P11 is started and it has a pid of 80972
-P12 is started and it has a pid of 80975
-P13 is started and it has a pid of 80978
-P14 is started and it has a pid of 80982
-P15 is started and it has a pid of 80985
-P16 is started and it has a pid of 80988
-P17 is started and it has a pid of 80991
-P18 is started and it has a pid of 80994
-P19 is started and it has a pid of 80997
-P20 is started and it has a pid of 81000
-P21 is started and it has a pid of 81003
-P22 is started and it has a pid of 81006
-P23 is started and it has a pid of 81009
-P24 is started and it has a pid of 81012
-P25 is started and it has a pid of 81015
-P3 is killed
-Restarting P3
-P3 is started and it has a pid of 81020
-P10 is killed
-Restarting P10
-P10 is started and it has a pid of 81025
+P1 is started and it has a pid of 83899
+P2 is started and it has a pid of 83900
+P3 is started and it has a pid of 83901
+P4 is started and it has a pid of 83902
+P5 is started and it has a pid of 83903
+P6 is started and it has a pid of 83904
+P7 is started and it has a pid of 83905
+P8 is started and it has a pid of 83906
+P9 is started and it has a pid of 83907
+P10 is started and it has a pid of 83908
+P7 is killed
+Restarting P7
+P7 is started and it has a pid of 83909
 P1 is killed, all processes must be killed
 Restarting all processes
-P1 is started and it has a pid of 81058
-P2 is started and it has a pid of 81061
-P3 is started and it has a pid of 81064
-P4 is started and it has a pid of 81067
-P5 is started and it has a pid of 81070
-P6 is started and it has a pid of 81073
-P7 is started and it has a pid of 81076
-P8 is started and it has a pid of 81079
-P9 is started and it has a pid of 81082
-P10 is started and it has a pid of 81085
-P11 is started and it has a pid of 81092
-P12 is started and it has a pid of 81095
-P13 is started and it has a pid of 81098
-P14 is started and it has a pid of 81101
-P15 is started and it has a pid of 81104
-P16 is started and it has a pid of 81107
-P17 is started and it has a pid of 81110
-P18 is started and it has a pid of 81113
-P19 is started and it has a pid of 81116
-P20 is started and it has a pid of 81119
-P21 is started and it has a pid of 81122
-P22 is started and it has a pid of 81125
-P23 is started and it has a pid of 81128
-P24 is started and it has a pid of 81131
-P25 is started and it has a pid of 81135
-P9 is killed
-Restarting P9
-P9 is started and it has a pid of 81139
-P13 is killed
-Restarting P13
-P13 is started and it has a pid of 81145
-P1 is killed, all processes must be killed
-Restarting all processes
-P1 is started and it has a pid of 81186
-P2 is started and it has a pid of 81189
-P3 is started and it has a pid of 81192
-P4 is started and it has a pid of 81195
-P5 is started and it has a pid of 81198
-P6 is started and it has a pid of 81201
-P7 is started and it has a pid of 81204
-P8 is started and it has a pid of 81210
-P9 is started and it has a pid of 81213
-P10 is started and it has a pid of 81216
-P11 is started and it has a pid of 81219
-P12 is started and it has a pid of 81222
-P13 is started and it has a pid of 81225
-P14 is started and it has a pid of 81228
-P15 is started and it has a pid of 81231
-P16 is started and it has a pid of 81234
-P17 is started and it has a pid of 81237
-P18 is started and it has a pid of 81240
-P19 is started and it has a pid of 81243
-P20 is started and it has a pid of 81246
-P21 is started and it has a pid of 81249
-P22 is started and it has a pid of 81252
-P23 is started and it has a pid of 81255
-P24 is started and it has a pid of 81258
-P25 is started and it has a pid of 81261
+P1 is started and it has a pid of 83914
+P2 is started and it has a pid of 83915
+P3 is started and it has a pid of 83916
+P4 is started and it has a pid of 83917
+P5 is started and it has a pid of 83918
+P6 is started and it has a pid of 83919
+P7 is started and it has a pid of 83920
+P8 is started and it has a pid of 83921
+P9 is started and it has a pid of 83922
+P10 is started and it has a pid of 83923
 P5 is killed
 Restarting P5
-P5 is started and it has a pid of 81266
+P5 is started and it has a pid of 83924
 P3 is killed
 Restarting P3
-P3 is started and it has a pid of 81272
+P3 is started and it has a pid of 83925
 P1 is killed, all processes must be killed
 Restarting all processes
-P1 is started and it has a pid of 81303
-P2 is started and it has a pid of 81307
-P3 is started and it has a pid of 81310
-P4 is started and it has a pid of 81313
-P5 is started and it has a pid of 81316
-P6 is started and it has a pid of 81319
-P7 is started and it has a pid of 81322
-P8 is started and it has a pid of 81325
-P9 is started and it has a pid of 81328
-P10 is started and it has a pid of 81333
-P11 is started and it has a pid of 81336
-P12 is started and it has a pid of 81339
-P13 is started and it has a pid of 81342
-P14 is started and it has a pid of 81345
-P15 is started and it has a pid of 81348
-P16 is started and it has a pid of 81351
-P17 is started and it has a pid of 81354
-P18 is started and it has a pid of 81357
-P19 is started and it has a pid of 81360
-P20 is started and it has a pid of 81363
-P21 is started and it has a pid of 81366
-P22 is started and it has a pid of 81369
-P23 is started and it has a pid of 81372
-P24 is started and it has a pid of 81375
-P25 is started and it has a pid of 81378
+P1 is started and it has a pid of 83926
+P2 is started and it has a pid of 83927
+P3 is started and it has a pid of 83928
+P4 is started and it has a pid of 83929
+P5 is started and it has a pid of 83930
+P6 is started and it has a pid of 83931
+P7 is started and it has a pid of 83932
+P8 is started and it has a pid of 83933
+P9 is started and it has a pid of 83934
+P10 is started and it has a pid of 83936
 P5 is killed
 Restarting P5
-P5 is started and it has a pid of 81383
+P5 is started and it has a pid of 83937
 P3 is killed
 Restarting P3
-P3 is started and it has a pid of 81389
+P3 is started and it has a pid of 83939
 P1 is killed, all processes must be killed
 Restarting all processes
-P1 is started and it has a pid of 81419
-P2 is started and it has a pid of 81422
-P3 is started and it has a pid of 81425
-P4 is started and it has a pid of 81428
-P5 is started and it has a pid of 81431
-P6 is started and it has a pid of 81434
-P7 is started and it has a pid of 81437
-P8 is started and it has a pid of 81440
-P9 is started and it has a pid of 81443
-P10 is started and it has a pid of 81446
-P11 is started and it has a pid of 81449
-P12 is started and it has a pid of 81452
-P13 is started and it has a pid of 81455
-P14 is started and it has a pid of 81458
-P15 is started and it has a pid of 81461
-P16 is started and it has a pid of 81464
-P17 is started and it has a pid of 81468
-P18 is started and it has a pid of 81471
-P19 is started and it has a pid of 81474
-P20 is started and it has a pid of 81477
-P21 is started and it has a pid of 81480
-P22 is started and it has a pid of 81483
-P23 is started and it has a pid of 81486
-P24 is started and it has a pid of 81489
-P25 is started and it has a pid of 81492
+P1 is started and it has a pid of 83947
+P2 is started and it has a pid of 83948
+P3 is started and it has a pid of 83949
+P4 is started and it has a pid of 83950
+P5 is started and it has a pid of 83951
+P6 is started and it has a pid of 83952
+P7 is started and it has a pid of 83953
+P8 is started and it has a pid of 83954
+P9 is started and it has a pid of 83955
+P10 is started and it has a pid of 83956
 P5 is killed
 Restarting P5
-P5 is started and it has a pid of 81497
-P13 is killed
-Restarting P13
-P13 is started and it has a pid of 81505
-P10 is killed
-Restarting P10
-P10 is started and it has a pid of 81511
-P15 is killed
-Restarting P15
-P15 is started and it has a pid of 81515
-P12 is killed
-Restarting P12
-P12 is started and it has a pid of 81521
-P18 is killed
-Restarting P18
-P18 is started and it has a pid of 81526
-P15 is killed
-Restarting P15
-P15 is started and it has a pid of 81530
-P1 is killed, all processes must be killed
-Restarting all processes
-P1 is started and it has a pid of 81564
-P2 is started and it has a pid of 81567
-P3 is started and it has a pid of 81570
-P4 is started and it has a pid of 81573
-P5 is started and it has a pid of 81576
-P6 is started and it has a pid of 81579
-P7 is started and it has a pid of 81582
-P8 is started and it has a pid of 81585
-P9 is started and it has a pid of 81589
-P10 is started and it has a pid of 81592
-P11 is started and it has a pid of 81595
-P12 is started and it has a pid of 81598
-P13 is started and it has a pid of 81601
-P14 is started and it has a pid of 81604
-P15 is started and it has a pid of 81607
-P16 is started and it has a pid of 81610
-P17 is started and it has a pid of 81613
-P18 is started and it has a pid of 81616
-P19 is started and it has a pid of 81619
-P20 is started and it has a pid of 81623
-P21 is started and it has a pid of 81626
-P22 is started and it has a pid of 81629
-P23 is started and it has a pid of 81632
-P24 is started and it has a pid of 81635
-P25 is started and it has a pid of 81638
-P15 is killed
-Restarting P15
-P15 is started and it has a pid of 81643
-P21 is killed
-Restarting P21
-P21 is started and it has a pid of 81649
-P1 is killed, all processes must be killed
-Restarting all processes
-P1 is started and it has a pid of 81686
-P2 is started and it has a pid of 81689
-P3 is started and it has a pid of 81692
-P4 is started and it has a pid of 81695
-P5 is started and it has a pid of 81698
-P6 is started and it has a pid of 81701
-P7 is started and it has a pid of 81704
-P8 is started and it has a pid of 81707
-P9 is started and it has a pid of 81710
-P10 is started and it has a pid of 81713
-P11 is started and it has a pid of 81716
-P12 is started and it has a pid of 81719
-P13 is started and it has a pid of 81722
-P14 is started and it has a pid of 81725
-P15 is started and it has a pid of 81728
-P16 is started and it has a pid of 81731
-P17 is started and it has a pid of 81734
-P18 is started and it has a pid of 81737
-P19 is started and it has a pid of 81740
-P20 is started and it has a pid of 81744
-P21 is started and it has a pid of 81747
-P22 is started and it has a pid of 81750
-P23 is started and it has a pid of 81753
-P24 is started and it has a pid of 81756
-P25 is started and it has a pid of 81759
-P15 is killed
-Restarting P15
-P15 is started and it has a pid of 81764
+P5 is started and it has a pid of 83957
 Watchdog is terminating gracefully

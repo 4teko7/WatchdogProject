@@ -33,9 +33,6 @@ int main(int argc, char *argv[]) {
     //SIGNALS
     signal(SIGHUP, mySignal); 
     signal(SIGINT, mySignal); 
-    signal(SIGQUIT, mySignal); 
-    signal(SIGHUP, mySignal); 
-    signal(SIGINT, mySignal); 
     signal(SIGILL, mySignal); 
     signal(SIGTRAP, mySignal); 
     signal(SIGFPE, mySignal); 
