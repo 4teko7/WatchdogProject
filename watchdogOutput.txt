@@ -1,65 +1,242 @@
-P1 is started and it has a pid of 23860
-P2 is started and it has a pid of 23861
-P3 is started and it has a pid of 23871
-P4 is started and it has a pid of 23872
-P5 is started and it has a pid of 23874
-P6 is started and it has a pid of 23876
-P7 is started and it has a pid of 23878
-P8 is started and it has a pid of 23880
-P9 is started and it has a pid of 23882
-P10 is started and it has a pid of 23884
-P7 is killed
-Restarting P7
-P7 is started and it has a pid of 23886
-P1 is killed, all processes must be killed
-Restarting all processes
-P1 is started and it has a pid of 23905
-P2 is started and it has a pid of 23907
-P3 is started and it has a pid of 23909
-P4 is started and it has a pid of 23911
-P5 is started and it has a pid of 23913
-P6 is started and it has a pid of 23915
-P7 is started and it has a pid of 23917
-P8 is started and it has a pid of 23919
-P9 is started and it has a pid of 23921
-P10 is started and it has a pid of 23923
-P5 is killed
-Restarting P5
-P5 is started and it has a pid of 23925
+P1 is started and it has a pid of 24573
+P2 is started and it has a pid of 24576
+P3 is started and it has a pid of 24577
+P4 is started and it has a pid of 24579
+P5 is started and it has a pid of 24580
+P6 is started and it has a pid of 24590
+P7 is started and it has a pid of 24591
+P8 is started and it has a pid of 24593
+P9 is started and it has a pid of 24595
+P10 is started and it has a pid of 24596
+P11 is started and it has a pid of 24597
+P12 is started and it has a pid of 24607
+P13 is started and it has a pid of 24610
+P14 is started and it has a pid of 24612
+P15 is started and it has a pid of 24614
+P16 is started and it has a pid of 24616
+P17 is started and it has a pid of 24618
+P18 is started and it has a pid of 24620
+P19 is started and it has a pid of 24621
+P20 is started and it has a pid of 24622
+P21 is started and it has a pid of 24624
+P22 is started and it has a pid of 24625
+P23 is started and it has a pid of 24627
+P24 is started and it has a pid of 24629
+P25 is started and it has a pid of 24630
 P3 is killed
 Restarting P3
-P3 is started and it has a pid of 23929
+P3 is started and it has a pid of 24633
+P10 is killed
+Restarting P10
+P10 is started and it has a pid of 24636
 P1 is killed, all processes must be killed
 Restarting all processes
-P1 is started and it has a pid of 23942
-P2 is started and it has a pid of 23944
-P3 is started and it has a pid of 23946
-P4 is started and it has a pid of 23948
-P5 is started and it has a pid of 23950
-P6 is started and it has a pid of 23952
-P7 is started and it has a pid of 23954
-P8 is started and it has a pid of 23956
-P9 is started and it has a pid of 23958
-P10 is started and it has a pid of 23960
+P1 is started and it has a pid of 24663
+P2 is started and it has a pid of 24666
+P3 is started and it has a pid of 24678
+P4 is started and it has a pid of 24683
+P5 is started and it has a pid of 24685
+P6 is started and it has a pid of 24687
+P7 is started and it has a pid of 24689
+P8 is started and it has a pid of 24691
+P9 is started and it has a pid of 24693
+P10 is started and it has a pid of 24695
+P11 is started and it has a pid of 24697
+P12 is started and it has a pid of 24699
+P13 is started and it has a pid of 24701
+P14 is started and it has a pid of 24703
+P15 is started and it has a pid of 24705
+P16 is started and it has a pid of 24707
+P17 is started and it has a pid of 24709
+P18 is started and it has a pid of 24711
+P19 is started and it has a pid of 24713
+P20 is started and it has a pid of 24715
+P21 is started and it has a pid of 24717
+P22 is started and it has a pid of 24719
+P23 is started and it has a pid of 24721
+P24 is started and it has a pid of 24723
+P25 is started and it has a pid of 24725
+P9 is killed
+Restarting P9
+P9 is started and it has a pid of 24728
+P13 is killed
+Restarting P13
+P13 is started and it has a pid of 24733
+P1 is killed, all processes must be killed
+Restarting all processes
+P1 is started and it has a pid of 24762
+P2 is started and it has a pid of 24765
+P3 is started and it has a pid of 24767
+P4 is started and it has a pid of 24769
+P5 is started and it has a pid of 24771
+P6 is started and it has a pid of 24773
+P7 is started and it has a pid of 24775
+P8 is started and it has a pid of 24777
+P9 is started and it has a pid of 24779
+P10 is started and it has a pid of 24781
+P11 is started and it has a pid of 24783
+P12 is started and it has a pid of 24785
+P13 is started and it has a pid of 24787
+P14 is started and it has a pid of 24789
+P15 is started and it has a pid of 24791
+P16 is started and it has a pid of 24793
+P17 is started and it has a pid of 24795
+P18 is started and it has a pid of 24797
+P19 is started and it has a pid of 24801
+P20 is started and it has a pid of 24803
+P21 is started and it has a pid of 24805
+P22 is started and it has a pid of 24807
+P23 is started and it has a pid of 24809
+P24 is started and it has a pid of 24811
+P25 is started and it has a pid of 24813
 P5 is killed
 Restarting P5
-P5 is started and it has a pid of 23962
+P5 is started and it has a pid of 24816
 P3 is killed
 Restarting P3
-P3 is started and it has a pid of 23967
+P3 is started and it has a pid of 24820
 P1 is killed, all processes must be killed
 Restarting all processes
-P1 is started and it has a pid of 23982
-P2 is started and it has a pid of 23985
-P3 is started and it has a pid of 23987
-P4 is started and it has a pid of 23990
-P5 is started and it has a pid of 23992
-P6 is started and it has a pid of 23994
-P7 is started and it has a pid of 23996
-P8 is started and it has a pid of 23998
-P9 is started and it has a pid of 24000
-P10 is started and it has a pid of 24002
+P1 is started and it has a pid of 24850
+P2 is started and it has a pid of 24853
+P3 is started and it has a pid of 24855
+P4 is started and it has a pid of 24859
+P5 is started and it has a pid of 24861
+P6 is started and it has a pid of 24863
+P7 is started and it has a pid of 24865
+P8 is started and it has a pid of 24867
+P9 is started and it has a pid of 24869
+P10 is started and it has a pid of 24871
+P11 is started and it has a pid of 24873
+P12 is started and it has a pid of 24875
+P13 is started and it has a pid of 24877
+P14 is started and it has a pid of 24879
+P15 is started and it has a pid of 24881
+P16 is started and it has a pid of 24883
+P17 is started and it has a pid of 24885
+P18 is started and it has a pid of 24887
+P19 is started and it has a pid of 24889
+P20 is started and it has a pid of 24892
+P21 is started and it has a pid of 24894
+P22 is started and it has a pid of 24896
+P23 is started and it has a pid of 24898
+P24 is started and it has a pid of 24900
+P25 is started and it has a pid of 24902
 P5 is killed
 Restarting P5
-P5 is started and it has a pid of 24004
+P5 is started and it has a pid of 24905
+P3 is killed
+Restarting P3
+P3 is started and it has a pid of 24909
+P1 is killed, all processes must be killed
+Restarting all processes
+P1 is started and it has a pid of 24938
+P2 is started and it has a pid of 24941
+P3 is started and it has a pid of 24943
+P4 is started and it has a pid of 24945
+P5 is started and it has a pid of 24947
+P6 is started and it has a pid of 24949
+P7 is started and it has a pid of 24951
+P8 is started and it has a pid of 24953
+P9 is started and it has a pid of 24955
+P10 is started and it has a pid of 24957
+P11 is started and it has a pid of 24959
+P12 is started and it has a pid of 24961
+P13 is started and it has a pid of 24963
+P14 is started and it has a pid of 24965
+P15 is started and it has a pid of 24967
+P16 is started and it has a pid of 24969
+P17 is started and it has a pid of 24971
+P18 is started and it has a pid of 24973
+P19 is started and it has a pid of 24975
+P20 is started and it has a pid of 24977
+P21 is started and it has a pid of 24979
+P22 is started and it has a pid of 24981
+P23 is started and it has a pid of 24983
+P24 is started and it has a pid of 24985
+P25 is started and it has a pid of 24987
+P5 is killed
+Restarting P5
+P5 is started and it has a pid of 24991
+P13 is killed
+Restarting P13
+P13 is started and it has a pid of 24995
+P10 is killed
+Restarting P10
+P10 is started and it has a pid of 24998
+P15 is killed
+Restarting P15
+P15 is started and it has a pid of 25000
+P12 is killed
+Restarting P12
+P12 is started and it has a pid of 25004
+P18 is killed
+Restarting P18
+P18 is started and it has a pid of 25007
+P15 is killed
+Restarting P15
+P15 is started and it has a pid of 25010
+P1 is killed, all processes must be killed
+Restarting all processes
+P1 is started and it has a pid of 25042
+P2 is started and it has a pid of 25045
+P3 is started and it has a pid of 25047
+P4 is started and it has a pid of 25049
+P5 is started and it has a pid of 25051
+P6 is started and it has a pid of 25053
+P7 is started and it has a pid of 25055
+P8 is started and it has a pid of 25057
+P9 is started and it has a pid of 25059
+P10 is started and it has a pid of 25061
+P11 is started and it has a pid of 25063
+P12 is started and it has a pid of 25065
+P13 is started and it has a pid of 25067
+P14 is started and it has a pid of 25069
+P15 is started and it has a pid of 25071
+P16 is started and it has a pid of 25073
+P17 is started and it has a pid of 25076
+P18 is started and it has a pid of 25078
+P19 is started and it has a pid of 25080
+P20 is started and it has a pid of 25082
+P21 is started and it has a pid of 25084
+P22 is started and it has a pid of 25086
+P23 is started and it has a pid of 25088
+P24 is started and it has a pid of 25090
+P25 is started and it has a pid of 25092
+P15 is killed
+Restarting P15
+P15 is started and it has a pid of 25095
+P21 is killed
+Restarting P21
+P21 is started and it has a pid of 25098
+P1 is killed, all processes must be killed
+Restarting all processes
+P1 is started and it has a pid of 25126
+P2 is started and it has a pid of 25129
+P3 is started and it has a pid of 25131
+P4 is started and it has a pid of 25133
+P5 is started and it has a pid of 25135
+P6 is started and it has a pid of 25137
+P7 is started and it has a pid of 25139
+P8 is started and it has a pid of 25141
+P9 is started and it has a pid of 25143
+P10 is started and it has a pid of 25148
+P11 is started and it has a pid of 25150
+P12 is started and it has a pid of 25152
+P13 is started and it has a pid of 25154
+P14 is started and it has a pid of 25156
+P15 is started and it has a pid of 25158
+P16 is started and it has a pid of 25160
+P17 is started and it has a pid of 25162
+P18 is started and it has a pid of 25164
+P19 is started and it has a pid of 25166
+P20 is started and it has a pid of 25168
+P21 is started and it has a pid of 25170
+P22 is started and it has a pid of 25172
+P23 is started and it has a pid of 25174
+P24 is started and it has a pid of 25176
+P25 is started and it has a pid of 25178
+P15 is killed
+Restarting P15
+P15 is started and it has a pid of 25182
 Watchdog is terminating gracefully

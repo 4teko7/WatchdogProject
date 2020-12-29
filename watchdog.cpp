@@ -141,7 +141,6 @@ void killAllChildren(bool shouldPOneBeKilled){
     map<long,long>::iterator pidsIterator = indexPids.begin();
     if(!shouldPOneBeKilled) pidsIterator++;
     for(; pidsIterator != indexPids.end(); pidsIterator++){
-        cout << pidsIterator->first << " : " << pidsIterator->second << endl;
         sleep(timeToSleep);  // Deal with writing delays
         kill(pidsIterator->second , 15);
         wait(NULL);
