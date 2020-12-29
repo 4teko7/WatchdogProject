@@ -80,6 +80,7 @@ void createOneChild(pid_t pidOfChild, int numberOfProcess, char * processOutput)
     watchdogOutputStream << pNumber << " is killed\n";
     watchdogOutputStream.flush();
     childpid = fork();
+
     if(childpid == -1){
         watchdogOutputStream << "FAILED TO FORK\n";
         watchdogOutputStream.flush();
@@ -91,13 +92,13 @@ void createOneChild(pid_t pidOfChild, int numberOfProcess, char * processOutput)
         write(fd, processIdString.c_str(), 30); 
         execl("./process","./process", processOutput, pNumber.c_str(), NULL);
     }
-    sleep(timeToSleep);  // Deal with writing delays
     pidsMap.erase(pidOfChild);
     pidsMap[childpid] = pNumber;
     indexPids[stoi(pNumber.substr(1))]=childpid;
     watchdogOutputStream << "Restarting " << pNumber << "\n";
     watchdogOutputStream << pNumber << " is started and it has a pid of " << childpid << "\n";
     watchdogOutputStream.flush();
+
 }
 
 //create all children
@@ -141,15 +142,16 @@ void killAllChildren(bool shouldPOneBeKilled){
     map<long,long>::iterator pidsIterator = indexPids.begin();
     if(!shouldPOneBeKilled) pidsIterator++;
     for(; pidsIterator != indexPids.end(); pidsIterator++){
-        sleep(timeToSleep);  // Deal with writing delays
         kill(pidsIterator->second , 15);
         wait(NULL);
+        sleep(timeToSleep);  // Deal with writing delays
     }
     pidsMap.clear();
 }
 
 //Kill watchdog and all Its children
 void killWatchdog(int sigNumber) {
+    sleep(timeToSleep);  // Deal with writing delays
     killAllChildren(true);
     watchdogOutputStream << "Watchdog is terminating gracefully\n";
     watchdogOutputStream.flush();
