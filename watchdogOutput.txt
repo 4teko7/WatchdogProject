@@ -1,65 +1,65 @@
-P1 is started and it has a pid of 83899
-P2 is started and it has a pid of 83900
-P3 is started and it has a pid of 83901
-P4 is started and it has a pid of 83902
-P5 is started and it has a pid of 83903
-P6 is started and it has a pid of 83904
-P7 is started and it has a pid of 83905
-P8 is started and it has a pid of 83906
-P9 is started and it has a pid of 83907
-P10 is started and it has a pid of 83908
+P1 is started and it has a pid of 23860
+P2 is started and it has a pid of 23861
+P3 is started and it has a pid of 23871
+P4 is started and it has a pid of 23872
+P5 is started and it has a pid of 23874
+P6 is started and it has a pid of 23876
+P7 is started and it has a pid of 23878
+P8 is started and it has a pid of 23880
+P9 is started and it has a pid of 23882
+P10 is started and it has a pid of 23884
 P7 is killed
 Restarting P7
-P7 is started and it has a pid of 83909
+P7 is started and it has a pid of 23886
 P1 is killed, all processes must be killed
 Restarting all processes
-P1 is started and it has a pid of 83914
-P2 is started and it has a pid of 83915
-P3 is started and it has a pid of 83916
-P4 is started and it has a pid of 83917
-P5 is started and it has a pid of 83918
-P6 is started and it has a pid of 83919
-P7 is started and it has a pid of 83920
-P8 is started and it has a pid of 83921
-P9 is started and it has a pid of 83922
-P10 is started and it has a pid of 83923
+P1 is started and it has a pid of 23905
+P2 is started and it has a pid of 23907
+P3 is started and it has a pid of 23909
+P4 is started and it has a pid of 23911
+P5 is started and it has a pid of 23913
+P6 is started and it has a pid of 23915
+P7 is started and it has a pid of 23917
+P8 is started and it has a pid of 23919
+P9 is started and it has a pid of 23921
+P10 is started and it has a pid of 23923
 P5 is killed
 Restarting P5
-P5 is started and it has a pid of 83924
+P5 is started and it has a pid of 23925
 P3 is killed
 Restarting P3
-P3 is started and it has a pid of 83925
+P3 is started and it has a pid of 23929
 P1 is killed, all processes must be killed
 Restarting all processes
-P1 is started and it has a pid of 83926
-P2 is started and it has a pid of 83927
-P3 is started and it has a pid of 83928
-P4 is started and it has a pid of 83929
-P5 is started and it has a pid of 83930
-P6 is started and it has a pid of 83931
-P7 is started and it has a pid of 83932
-P8 is started and it has a pid of 83933
-P9 is started and it has a pid of 83934
-P10 is started and it has a pid of 83936
+P1 is started and it has a pid of 23942
+P2 is started and it has a pid of 23944
+P3 is started and it has a pid of 23946
+P4 is started and it has a pid of 23948
+P5 is started and it has a pid of 23950
+P6 is started and it has a pid of 23952
+P7 is started and it has a pid of 23954
+P8 is started and it has a pid of 23956
+P9 is started and it has a pid of 23958
+P10 is started and it has a pid of 23960
 P5 is killed
 Restarting P5
-P5 is started and it has a pid of 83937
+P5 is started and it has a pid of 23962
 P3 is killed
 Restarting P3
-P3 is started and it has a pid of 83939
+P3 is started and it has a pid of 23967
 P1 is killed, all processes must be killed
 Restarting all processes
-P1 is started and it has a pid of 83947
-P2 is started and it has a pid of 83948
-P3 is started and it has a pid of 83949
-P4 is started and it has a pid of 83950
-P5 is started and it has a pid of 83951
-P6 is started and it has a pid of 83952
-P7 is started and it has a pid of 83953
-P8 is started and it has a pid of 83954
-P9 is started and it has a pid of 83955
-P10 is started and it has a pid of 83956
+P1 is started and it has a pid of 23982
+P2 is started and it has a pid of 23985
+P3 is started and it has a pid of 23987
+P4 is started and it has a pid of 23990
+P5 is started and it has a pid of 23992
+P6 is started and it has a pid of 23994
+P7 is started and it has a pid of 23996
+P8 is started and it has a pid of 23998
+P9 is started and it has a pid of 24000
+P10 is started and it has a pid of 24002
 P5 is killed
 Restarting P5
-P5 is started and it has a pid of 83957
+P5 is started and it has a pid of 24004
 Watchdog is terminating gracefully
