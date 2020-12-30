@@ -52,35 +52,29 @@ map<long,long> indexPids;
  */
 int main(int argc, char *argv[]) { 
 	 
-    /*! Holds the path of the pipe */
-	char * myfifo = (char*) "/tmp/myfifo";
+     
+  char * myfifo = (char*) "/tmp/myfifo"; //Path of pipe
+    
 
-    /*! Opens the pipe  */
+	fd = open(myfifo, O_WRONLY);  
+
     fd = open(myfifo, O_WRONLY);  
 
-    /*! Number of processes  */
-    int numberOfProcess = stoi(argv[1]) ; 
+    int numberOfProcess = stoi(argv[1]) ; // Number of processes
     
-    /*! Output path of process  */
-    char * processOutput = argv[2] ; 
+    char * processOutput = argv[2] ; // Output path of process
 
-    /*! Output path of watchdog  */
-    char * watchdogOutput = argv[3] ; 
+    char * watchdogOutput = argv[3] ; //Output path of watchdog
 
-    /*! Opens the output file of watchdog  */
     watchdogOutputStream.open(watchdogOutput, ios::app);
     
-    /*! pid of objects  */
-    long pid;
+    long pid; //pid of objects
     
-    /*! pids String  */
-    string processIdString;
+    string processIdString; //pids String
 
-    /*! Pids of Parent */
-    stringstream processId1;
+    stringstream processId1; //Pids of Parent
 
-    /*! Pids of parent */
-    pid_t parentPid;
+    pid_t parentPid; //Pids of parent
 
 
     processId1 << "P" <<  0 << ' ' << (long)getpid();
@@ -94,9 +88,8 @@ int main(int argc, char *argv[]) {
     signal(SIGTERM, killWatchdog); 
 
     while(true){
-        /*! Pids of Child */
-        pid_t pidOfChild = wait(NULL);
-        string pNumber = pidsMap.at(pidOfChild);
+        pid_t pidOfChild = wait(NULL); //Pids of Child
+        string pNumber = pidsMap.at(pidOfChild); // P# of child
 
         
         if(pNumber == "P1"){ 
@@ -120,17 +113,13 @@ int main(int argc, char *argv[]) {
  */
 void createOneChild(pid_t pidOfChild, int numberOfProcess, char * processOutput){
     
-    /*! Process id */
-    stringstream processId;
+    stringstream processId; //Process id
     
-    /*! Process id string */
-    string processIdString;
+    string processIdString; //Process id string
     
-    /*! Pids of Child */
-    pid_t childpid;
+    pid_t childpid; //Pids of Child
 
-    /*! P Number */
-    string pNumber = pidsMap.at(pidOfChild);
+    string pNumber = pidsMap.at(pidOfChild); // P# Number
     watchdogOutputStream << pNumber << " is killed\n";
     watchdogOutputStream.flush();
     childpid = fork();
@@ -164,14 +153,11 @@ void createOneChild(pid_t pidOfChild, int numberOfProcess, char * processOutput)
  */
 void createAllChilds(int numberOfProcess, char * processOutput,bool isResultOfKill){
 
-    /*! Pids of Child */
-    stringstream processId;
+    stringstream processId; //Pids of Child
 
-    /*! Pids of Child */
-    string processIdString;
+    string processIdString; //Pids of Child
     
-    /*! Pids of Child */
-    pid_t childpid;
+    pid_t childpid; //Pids of Child
 
     if(isResultOfKill){
         watchdogOutputStream << "P1 is killed, all processes must be killed\n";
@@ -180,8 +166,7 @@ void createAllChilds(int numberOfProcess, char * processOutput,bool isResultOfKi
     }
     for (int i=1; i<=numberOfProcess; i++) {
 
-        /*! P Number */
-        string pNumber ="P";
+        string pNumber ="P"; // P# Number
         childpid = fork();
         if(childpid == -1){
             watchdogOutputStream << "FAILED TO FORK\n";
@@ -212,8 +197,7 @@ void createAllChilds(int numberOfProcess, char * processOutput,bool isResultOfKi
  * @param shouldPOneBeKilled When watchdog is terminated, this is true because P1 must be killed. But when P1 is terminated, that means P1 is terminated before this method, then This is false and we should pass P1 and start termination from P2.
  */
 void killAllChildren(bool shouldPOneBeKilled){
-    /*! Iterator for iterating on pids */
-    map<long,long>::iterator pidsIterator = indexPids.begin();
+    map<long,long>::iterator pidsIterator = indexPids.begin(); //Iterator for iterating on pids
     if(!shouldPOneBeKilled) pidsIterator++;
     for(; pidsIterator != indexPids.end(); pidsIterator++){
         kill(pidsIterator->second , 15);
